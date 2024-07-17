@@ -2,7 +2,7 @@ go/
 go.sum
 go.mod
 go.work
-*.go
+
 *.go~
 *.go.html
 *.go.swp
