@@ -1,0 +1,9 @@
+.dart_tool/
+pubspec.lock
+pubspec.yaml~
+analysis_options.yaml~
+.dart_tool/analysis_options.yaml
+.dart_tool/pubspec.yaml
+.dart_tool/pubspec.lock
+.dart_tool/analysis_options.yaml~
+
