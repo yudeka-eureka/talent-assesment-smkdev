@@ -1,8 +1,7 @@
 # PHP
 vendor/
-composer.lock
+
 phpunit.xml.dist
-phpunit.xml
 # PHPStorm
 .idea/
 # NetBeans
