@@ -1,3 +1,5 @@
+<?php
+
 /**
  * Alfabet dari a sampai z memiliki bobot sebesar angka urutannya, 
  * misal: a = 1, b = 2, c = 3, ..., z = 26. 
@@ -15,10 +17,9 @@
  * Buat fungsi untuk menyelesaikan permasalahan Weighted Strings!
  */
 
-
-function weightedString(a = 'abbcccd', b = [1, 3, 9, 8]) {
-    // code disini
+ 
+function weightedStrings($a = "abbcccd", $b = [1, 3, 9, 8]) {  
     return ["YES", "YES", "YES", "NO"];
 }
 
-module.exports = weightedString;
+?>

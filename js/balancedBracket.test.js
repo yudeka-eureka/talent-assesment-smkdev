@@ -1,13 +1,13 @@
 const balanceBracket = require('./balancedBracket');
 
-test('adds { [ ( ) ] } to equal true', () => {
-    expect(balanceBracket("{ [ ( ) ] }")).toBe(true);
+test('adds { [ ( ) ] } to equal YES', () => {
+    expect(balanceBracket("{ [ ( ) ] }")).toBe("YES");
 });
 
-test('adds { [ ( ) ] } to equal false', () => {
-    expect(balanceBracket("{ [ ( ) ] }")).toBe(false);
+test('adds { [ ( ] ) } to equal NO', () => {
+    expect(balanceBracket("{ [ ( ] ) }")).toBe("NO");
 });
 
-test('adds { [ ( ] ) } to equal true', () => {
-    expect(balanceBracket("{ [ ( ) ] }")).toBe(true);
+test('adds { ( ( [ ] ) [ ] ) [ ] } to equal YES', () => {
+    expect(balanceBracket("{ ( ( [ ] ) [ ] ) [ ] }")).toBe("YES");
 });

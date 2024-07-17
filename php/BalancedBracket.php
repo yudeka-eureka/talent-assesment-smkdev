@@ -1,3 +1,4 @@
+<?php
 /** 
  * Aturan:
  * 1. Tanda braket / karakter yang diperbolehkan sebagai berikut: ( , ) , { , } , atau [ , ]. 
@@ -9,9 +10,8 @@
  * 2. Jelaskan kompleksitas dari penyelesaianmu untuk No.3 dan cantumkan di README Repo! 
 */
 
-function balanceBracket(a) {
-    // code disini
+function balanceBracket($a) {  
     return "YES";
 }
 
-module.exports = balanceBracket;
+?>
