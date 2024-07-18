@@ -30,17 +30,17 @@ Hasil dari tes koding akan diumumkan dalam waktu 1x24 jam setelah tes dilakukan.
 
 # Cara Coding
 
-1. Pull repository yang sudah tersedia
-2. Buat branch dengan format `<nama_depan>-<programming>` contoh `sudar-php`
-3. Coding di fungsi yang sudah di sediakan contoh 
+1. Pull repository yang dari fork repo
+2. Coding di fungsi yang sudah di sediakan contoh 
    ``` 
    function WeightedStrings(keyword,query) {
         //code disini
    } 
    ```
-4. Buat commit sesuai dengan standar [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/)
-5. Runnig code dengan menggunakan **unit testing**
-6. Push code
+3. Buat commit sesuai dengan standar [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/)
+4. Runnig code dengan menggunakan **unit testing**
+5. Push code
+6. Pull request ke repository fork
 7. Jika ada pertanyaan silahkan buat issue di [github](https://github.com/yudeka-eureka/talent-assesment-smkdev)
 
 
