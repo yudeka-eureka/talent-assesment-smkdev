@@ -18,15 +18,14 @@ Hasil dari tes koding akan diumumkan dalam waktu 1x24 jam setelah tes dilakukan.
     sequenceDiagram
         actor T as Talent
         participant G as Github
-        participant S as System
-        T->>G: pull repo
-        T->>G: create branch
-        T->>G: push code
-        G->>G: validation branch & commit
-        G-->>T: not passed
-        G->>S: run system
-        S->>S: validation code
-        S-->>T: send result
+        actor S as SMK.DEV
+        T->>G: fork repository https://github.com/yudeka-eureka/talent-assesment-smkdev
+        T->>G: pull repo di fork repo
+        T->>T: code
+        T->>G: push code di fork repo
+        T->>G: pull request ke reposotory https://github.com/yudeka-eureka/talent-assesment-smkdev
+        S->>G: cek pull request
+        S-->>T: send result test
 ```
 
 # Cara Coding
@@ -40,16 +39,9 @@ Hasil dari tes koding akan diumumkan dalam waktu 1x24 jam setelah tes dilakukan.
    } 
    ```
 4. Buat commit sesuai dengan standar [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/)
-5. Push code ke branch yang sudah dibuat
-
-# Cara Submit
-
-1. Push code ke branch yang sudah di buat
-2. System akan memvalidasi branch dan commit 
-3. Jika belum sesuai sistem akan mereject
-4. Jika sudah sesuai sistem akan memvalidasi code
-5. 1x24 jam sistem akan memberitahukan via email hasil test
-
+5. Runnig code dengan menggunakan **unit testing**
+6. Push code
+7. Jika ada pertanyaan silahkan buat issue di [github](https://github.com/yudeka-eureka/talent-assesment-smkdev)
 
 
 
