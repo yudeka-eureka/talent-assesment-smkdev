@@ -12,7 +12,40 @@
 
 function balanceBracket($a) {  
     // code disini
-    return "YES";
+    // return "YES";
+
+     // Menghapus whitespace dari string
+     $str = str_replace(' ', '', $a);
+
+    // Stack untuk melacak braket yang belum dipasangkan
+    $stack = [];
+
+    // Map untuk mencocokkan braket buka dan tutup
+    $bracketMap = [
+        ')' => '(',
+        '}' => '{',
+        ']' => '['
+    ];
+
+    // Melakukan looping pada setiap karakter dalam string 
+    foreach (str_split($str) as $char) {
+
+        if (in_array($char, ['(', '{', '['])) {
+            // Jika karakter adalah braket buka, push ke stack
+            $stack[] = $char;
+        } elseif (in_array($char, [')', '}', ']'])) {
+            // Jika karakter adalah braket tutup
+            if (empty($stack) || end($stack) !== $bracketMap[$char]) {
+                // Jika stack kosong atau braket tutup tidak cocok dengan braket buka di atas stack
+                return "NO";
+            }
+            // Jika cocok, pop braket buka dari stack
+            array_pop($stack);
+        }
+    }
+
+     // Jika stack kosong, semua braket buka memiliki pasangan
+     return empty($stack) ? "YES" : "NO";
 }
 
 ?>
