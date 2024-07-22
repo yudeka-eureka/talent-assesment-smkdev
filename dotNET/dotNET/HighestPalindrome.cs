@@ -26,63 +26,7 @@ namespace dotNET
         /// <returns></returns>
         public static string HighestPalindrome(string a, int k)
         {
-            if (string.IsNullOrWhiteSpace(a))
-                throw new ArgumentNullException(nameof(a));
-
-            char[] charText = a.ToCharArray();
-
-            // Step 1: Make the string a palindrome with minimal changes
-            if (!MakePalindrome(charText, 0, a.Length - 1, ref k))
-                return "-1";
-
-            // Step 2: Maximize the palindrome to the highest possible value
-            MaximizePalindrome(charText, 0, a.Length - 1, ref k);
-
-            return new string(charText);
-        }
-
-        private static bool MakePalindrome(char[] charText, int index, int totalLength, ref int k)
-        {
-            if (index >= totalLength)
-                return k >= 0;
-
-            if (charText[index] != charText[totalLength])
-            {
-                charText[index] = charText[totalLength] = (charText[index] > charText[totalLength] ? charText[index] : charText[totalLength]);
-                k--;
-            }
-
-            return MakePalindrome(charText, index + 1, totalLength - 1, ref k);
-        }
-
-        private static void MaximizePalindrome(char[] charText, int index, int totalLength, ref int k)
-        {
-            if (index > totalLength || k <= 0)
-                return;
-
-            if (index == totalLength)
-            {
-                if (k > 0)
-                    charText[index] = '9';
-
-                return;
-            }
-
-            if (charText[index] < '9')
-            {
-                if (k >= 2 && charText[index] == charText[index] && charText[totalLength] == charText[totalLength])
-                {
-                    k -= 2;
-                    charText[index] = charText[totalLength] = '9';
-                }
-                else if (k >= 1 && (charText[index] != charText[index] || charText[totalLength] != charText[totalLength]))
-                {
-                    k--;
-                    charText[index] = charText[totalLength] = '9';
-                }
-            }
-
-            MaximizePalindrome(charText, index + 1, totalLength - 1, ref k);
+            return new string("99999");
         }
 
     }

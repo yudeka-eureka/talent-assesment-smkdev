@@ -1,40 +1,82 @@
-using dotNET;
+using NUnit.Framework;
+using dotNET; // Pastikan namespace ini sesuai dengan namespace kelas Program
 
 namespace Test
 {
-    public class Tests
+    // [SetUpFixture] untuk inisialisasi global yang dijalankan sekali untuk semua pengujian
+    [SetUpFixture]
+    public class GlobalSetup
+    {
+        [OneTimeSetUp]
+        public void GlobalSetupMethod()
+        {
+            // Inisialisasi global sebelum semua pengujian dijalankan
+        }
+
+        [OneTimeTearDown]
+        public void GlobalTeardownMethod()
+        {
+            // Cleanup global setelah semua pengujian selesai
+        }
+    }
+
+    [TestFixture]
+    public class BalanceBracketTests
     {
         [SetUp]
         public void Setup()
         {
+            // Inisialisasi sebelum setiap pengujian di kelas ini dijalankan
         }
 
-        [Test]
-        public void TestBalanceBracket()
+        [TestCase("{ [ ( ] ) }", "NO")]
+        [TestCase("{ ( ( [ ] ) [ ] ) [ ] }", "YES")]
+        [TestCase("{[()]}", "YES")]
+        [TestCase("{(([|])[])[]}", "NO")]
+        public void TestBalanceBracket(string input, string expected)
         {
-            Assert.Multiple(() =>
-            {
-                Assert.That(Program.BalanceBracket("()"), Is.EqualTo("YES"));
-                Assert.That(Program.BalanceBracket("({[]})"), Is.EqualTo("YES"));
-                Assert.That(Program.BalanceBracket("({[})"), Is.EqualTo("NO"));
-            });
+            // Pengujian untuk fungsi BalanceBracket
+            Assert.That(Program.BalanceBracket(input), Is.EqualTo(expected));
+        }
+    }
+
+    [TestFixture]
+    public class HighestPalindromeTests
+    {
+        [SetUp]
+        public void Setup()
+        {
+            // Inisialisasi sebelum setiap pengujian di kelas ini dijalankan
         }
 
-        [Test]
-        public void TestHighestPalindrome()
+        [TestCase("3943", 1, "3993")]
+        [TestCase("932239", 2, "992299")]
+        [TestCase("092282", 3, "992299")]
+        [TestCase("5566", 1, "-1")]
+        [TestCase("11331", 4, "99399")]
+        [TestCase("A1341", 1, "-1")]
+        public void TestHighestPalindrome(string input, int k, string expected)
         {
-            Assert.Multiple(() =>
-            {
-                Assert.That(Program.HighestPalindrome("3943", 1), Is.EqualTo("3993"));
-                Assert.That(Program.HighestPalindrome("932239", 2), Is.EqualTo("992299"));
-            });
+            // Pengujian untuk fungsi HighestPalindrome
+            Assert.That(Program.HighestPalindrome(input, k), Is.EqualTo(expected));
         }
+    }
 
-        [Test]
-        public void TestWeightedStrings()
+    [TestFixture]
+    public class WeightedStringTests
+    {
+        [SetUp]
+        public void Setup()
         {
-            CollectionAssert.AreEqual(new[] { "YES", "YES", "YES", "NO" }, Program.WeightedString("abbcccd", [1, 3, 9, 8]));
-            CollectionAssert.AreEqual(new[] { "NO", "YES", "NO", "YES", "YES", "NO" }, Program.WeightedString("aaabbbcccddd", [5, 9, 7, 8, 12, 5]));
+            // Inisialisasi sebelum setiap pengujian di kelas ini dijalankan
+        }
+        [TestCase("abbcccd", new int[] { 1, 3, 9, 8 }, new string[] { "YES", "YES", "YES", "NO" })]
+        [TestCase("aaabbbcccddd", new int[] { 5, 9, 7, 8, 12, 5 }, new string[] { "NO", "YES", "NO", "YES", "YES", "NO" })]
+        [TestCase("getitssimple", new int[] { 1, 2, 8, 7, 12, 38, 10 }, new string[] { "NO", "NO", "NO", "YES", "YES", "YES", "NO" })]
+        public void TestWeightedStrings(string input, int[] weights, string[] expected)
+        {
+            // Pengujian untuk fungsi WeightedString
+            CollectionAssert.AreEqual(expected, Program.WeightedString(input, weights));
         }
     }
 }

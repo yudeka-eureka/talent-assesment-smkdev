@@ -23,43 +23,7 @@ namespace dotNET
         /// <returns></returns>
         public static string[] WeightedString(string a, ICollection<int> k)
         {
-            if (string.IsNullOrWhiteSpace(a))
-                throw new ArgumentNullException(nameof(a));
-            if (k == null || k.Count == 0)
-                throw new ArgumentNullException(nameof(k));
-
-            // rubah string menjadi 
-            var charText = a.ToCharArray();
-
-            var previousChar = -1;
-            var currentChar = -1;
-            var uniformStringSum = 0;
-            var uniformWeightSet = new HashSet<int>();
-
-            // loping tiap karkter
-            for (int i = 0; i < charText.Length; i++)
-            {
-                currentChar = charText[i];
-                if (currentChar != previousChar)
-                    uniformStringSum = currentChar - 96;
-                else
-                    uniformStringSum += currentChar - 96;
-
-                uniformWeightSet.Add(uniformStringSum);
-                previousChar = currentChar;
-            }
-
-            var result = new string[k.Count];
-            for (int i = 0; i < k.Count; i++)
-            {
-                var uniformWeight = k.ElementAt(i);
-                if (uniformWeightSet.Contains(uniformWeight))
-                    result[i] = "YES";
-                else
-                    result[i] = "NO";
-            }
-
-            return result;
+            return null;
         }
     }
 }

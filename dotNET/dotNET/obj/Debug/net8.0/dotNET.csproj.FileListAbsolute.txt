@@ -1,0 +1,12 @@
+/Users/god-of-thunder/talent-assesment-smkdev/dotNET/dotNET/bin/Debug/net8.0/dotNET.deps.json
+/Users/god-of-thunder/talent-assesment-smkdev/dotNET/dotNET/bin/Debug/net8.0/dotNET.dll
+/Users/god-of-thunder/talent-assesment-smkdev/dotNET/dotNET/bin/Debug/net8.0/dotNET.pdb
+/Users/god-of-thunder/talent-assesment-smkdev/dotNET/dotNET/obj/Debug/net8.0/dotNET.GeneratedMSBuildEditorConfig.editorconfig
+/Users/god-of-thunder/talent-assesment-smkdev/dotNET/dotNET/obj/Debug/net8.0/dotNET.AssemblyInfoInputs.cache
+/Users/god-of-thunder/talent-assesment-smkdev/dotNET/dotNET/obj/Debug/net8.0/dotNET.AssemblyInfo.cs
+/Users/god-of-thunder/talent-assesment-smkdev/dotNET/dotNET/obj/Debug/net8.0/dotNET.csproj.CoreCompileInputs.cache
+/Users/god-of-thunder/talent-assesment-smkdev/dotNET/dotNET/obj/Debug/net8.0/dotNET.sourcelink.json
+/Users/god-of-thunder/talent-assesment-smkdev/dotNET/dotNET/obj/Debug/net8.0/dotNET.dll
+/Users/god-of-thunder/talent-assesment-smkdev/dotNET/dotNET/obj/Debug/net8.0/refint/dotNET.dll
+/Users/god-of-thunder/talent-assesment-smkdev/dotNET/dotNET/obj/Debug/net8.0/dotNET.pdb
+/Users/god-of-thunder/talent-assesment-smkdev/dotNET/dotNET/obj/Debug/net8.0/ref/dotNET.dll
