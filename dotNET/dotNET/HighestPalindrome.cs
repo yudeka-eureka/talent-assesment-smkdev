@@ -26,7 +26,46 @@ namespace dotNET
         /// <returns></returns>
         public static string HighestPalindrome(string a, int k)
         {
-            return new string("99999");
+            string left = a.Substring(0, a.Length / 2);
+            string right = a.Substring((a.Length + 1) / 2);
+            if (a.Length % 2 == 1)
+            {
+                right = right.Substring(1);
+            }
+
+            if (k == 0)
+            {
+                if (left == Reverse(right))
+                {
+                    return a;
+                }
+                return "-1";
+            }
+            else
+            {
+                if (left == Reverse(right))
+                {
+                    return HighestPalindrome(a, k - 1);
+                }
+                else
+                {
+                    if (left.Length > right.Length)
+                    {
+                        return HighestPalindrome(left + left[left.Length - 1] + Reverse(left), k - 1);
+                    }
+                    else
+                    {
+                        return HighestPalindrome(left + right[0] + Reverse(left), k - 1);
+                    }
+                }
+            }
+        }
+
+        public static string Reverse(string s)
+        {
+            char[] charArray = s.ToCharArray();
+            Array.Reverse(charArray);
+            return new string(charArray);
         }
 
     }

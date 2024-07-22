@@ -8,7 +8,7 @@ namespace dotNET
         /// Alfabet dari a sampai z memiliki bobot sebesar angka urutannya, 
         /// misal: a = 1, b = 2, c = 3, ..., z = 26. 
         /// Bobot sebuah string merupakan penjumlahan bobot dari 
-        /// kesuluruhan karakter. 
+        /// keseluruhan karakter. 
         /// Contoh: gits = 7 + 9 + 20 + 19 = 55
         /// 
         /// Aturan:
@@ -23,7 +23,42 @@ namespace dotNET
         /// <returns></returns>
         public static string[] WeightedString(string a, ICollection<int> k)
         {
-            return null;
+            List<string> substrings = new List<string>();
+            int weight = 0;
+            int count = 1;
+
+            for (int i = 0; i < a.Length; i++)
+            {
+                weight += a[i] - 'a' + 1;
+
+                if (i < a.Length - 1 && a[i] == a[i + 1])
+                {
+                    count++;
+                }
+                else
+                {
+                    for (int j = 0; j < count; j++)
+                    {
+                        substrings.Add(a.Substring(i - count + 1, count));
+                    }
+                    count = 1;
+                }
+            }
+
+            string[] result = new string[substrings.Count];
+            for (int i = 0; i < substrings.Count; i++)
+            {
+                if (k.Contains(weight))
+                {
+                    result[i] = substrings[i];
+                }
+                else
+                {
+                    result[i] = "";
+                }
+            }
+
+            return result;
         }
     }
 }

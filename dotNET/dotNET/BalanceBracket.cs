@@ -18,7 +18,30 @@ namespace dotNET
         /// <returns></returns>
         public static string BalanceBracket(string a)
         {
-            return "YES";
+            Stack<char> stack = new Stack<char>();
+
+            foreach (char c in a)
+            {
+                if (c == '(' || c == '{' || c == '[')
+                {
+                    stack.Push(c);
+                }
+                else if (c == ')' || c == '}' || c == ']')
+                {
+                    if (stack.Count == 0)
+                    {
+                        return "NO";
+                    }
+
+                    char top = stack.Pop();
+
+                    if ((c == ')' && top != '(') || (c == '}' && top != '{') || (c == ']' && top != '['))
+                    {
+                        return "NO";
+                    }
+                }
+            }
+           return stack.Count == 0 ?  "YES" :  "NO";
         }
     }
 }
