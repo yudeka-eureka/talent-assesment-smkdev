@@ -54,3 +54,16 @@ Hasil dari tes koding akan diumumkan dalam waktu 1x24 jam setelah tes dilakukan.
 - [GitHub](https://github.com/smkdev-id)
   
 ![SMK.DEV SIAP KERJA!!! !](https://smkdev.storage.googleapis.com/wp/Professional-5-Steps-SMKDEV-Build-Digital-Talent-2.png)
+
+## Pembahasan Kompleksitas Waktu dan Ruang untuk *Balance Bracket*
+
+### Kompleksitas Waktu: O(n)
+
+    Dalam pemrosesan tiap karakter dimulai dari pertanyaan, apakah setiap karakter dalam string seimbang atau tidak? jadi kita perlu memeriksa setiap karakter setidaknya sekali. 
+    Oleh karena itu, kompleksitas waktu minimum yang diperlukan untuk mengoperasikan iterasi pada string adalah O(n), dimana n adalah panjang string, sementara untuk operasi stack (push dan pop) disini 
+    adalah O(1) per operasi, dimana kita hanya memproses setiap karakter sekali, jadi total waktu yang diperlukan untuk stack juga O(n).
+
+### Kompleksitas Ruang: O(n)
+
+    Operasi stack dalam kasus terburuk, jika semua karakter adalah tanda kurung buka dan tidak ada tanda kurung penutup yang sesuai, stack bisa memuat hingga n elemen. 
+    Oleh karena itu, penggunaan ruang stack maksimum adalah O(n) dan penggunaan map untuk pasangan tanda ( ), { }, atau [ ] memerlukan ruang konstan, O(1).
