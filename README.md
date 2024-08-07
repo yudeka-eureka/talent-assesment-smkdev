@@ -1,56 +1,53 @@
-# SMK.DEV Siap Kerja!!!
+# Balanced Bracket Function
 
-SMK.DEV adalah lembaga pelatihan yang menciptakan talenta digital global. Belajar langsung dari para ahli industri dengan kurikulum komprehensif berbasis project-based learning, memastikan peserta mendapatkan pengalaman praktis dan pengetahuan mendalam untuk berhasil di dunia digital yang terus berkembang.
+## Deskripsi
 
-# Proses Test Coding
+Fungsi ini memeriksa apakah sebuah string yang berisi tanda kurung adalah seimbang. Karakter tanda kurung yang diizinkan hanya `(`, `)`, `{`, `}`, `[`, dan `]`. Fungsi ini mengembalikan `"YES"` jika tanda kurung seimbang dan `"NO"` jika tidak.
 
-1.	**Tahapan Test** : 
-Sebelum dapat disalurkan sebagai talenta digital, Anda akan melalui beberapa tahap tes untuk memastikan kesiapan dan kecocokan Anda.
-2.	**Salah Satunya Adalah Tes Koding** : 
-Salah satu tahap penting adalah tes koding, yang dirancang untuk mengukur kemampuan teknis Anda secara menyeluruh.
-3.	**Tujuan Tes Koding** : 
-Tes koding ini bertujuan untuk memvalidasi keterampilan Anda sehingga sesuai dengan kebutuhan spesifik dari klien yang akan Anda hadapi.
-4.	**Pengumuman Hasil Tes Koding** :
-Hasil dari tes koding akan diumumkan dalam waktu 1x24 jam setelah tes dilakukan.
+## Solusi
 
-## Process Test Coding
-```mermaid 
-    sequenceDiagram
-        actor T as Talent
-        participant G as Github
-        actor S as SMK.DEV
-        T->>G: fork repository https://github.com/yudeka-eureka/talent-assesment-smkdev
-        T->>G: pull repo di fork repo
-        T->>T: code
-        T->>G: push code di fork repo
-        T->>G: pull request ke reposotory https://github.com/yudeka-eureka/talent-assesment-smkdev
-        S->>G: cek pull request
-        S-->>T: send result test
+Fungsi `balanceBracket` bekerja dengan menggunakan struktur data stack untuk melacak tanda kurung buka. Untuk setiap karakter dalam string, jika itu adalah tanda kurung buka, maka didorong ke stack. Jika itu adalah tanda kurung tutup, fungsi akan memeriksa apakah stack kosong atau apakah bagian atas stack bukan tanda kurung buka yang sesuai. Jika salah satu dari kondisi ini terpenuhi, fungsi akan mengembalikan `"NO"`. Setelah memproses semua karakter, fungsi akan mengembalikan `"YES"` jika stack kosong dan `"NO"` jika tidak.
+
+## Kode
+
+```javascript
+function balanceBracket(a) {
+    const stack = [];
+    const bracketPairs = {
+        ')': '(',
+        '}': '{',
+        ']': '['
+    };
+
+    for (let char of a) {
+        if (char === '(' || char === '{' || char === '[') {
+            stack.push(char);
+        } else if (char === ')' || char === '}' || char === ']') {
+            if (stack.length === 0 || stack.pop() !== bracketPairs[char]) {
+                return "NO";
+            }
+        } else {
+            // Jika ditemukan karakter yang tidak valid
+            return "NO";
+        }
+    }
+
+    return stack.length === 0 ? "YES" : "NO";
+}
 ```
 
-# Cara Coding
+## Kompleksitas Waktu
 
-1. Pull repository yang dari fork repo
-2. Coding di fungsi yang sudah di sediakan contoh 
-   ``` 
-   function WeightedStrings(keyword,query) {
-        //code disini
-   } 
-   ```
-3. Buat commit sesuai dengan standar [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/)
-4. Runnig code dengan menggunakan **unit testing**
-5. Push code
-6. Pull request ke repository fork
-7. Jika ada pertanyaan silahkan buat issue di [github](https://github.com/yudeka-eureka/talent-assesment-smkdev)
+Kompleksitas waktu dari fungsi ini adalah **O(n)**, di mana `n` adalah panjang string input. Ini karena setiap karakter dalam string diproses tepat sekali. Operasi push dan pop pada stack keduanya membutuhkan waktu konstan, O(1).
+
+## Kompleksitas Ruang
+
+Kompleksitas ruang dari fungsi ini adalah **O(n)** dalam kasus terburuk, di mana `n` adalah panjang string input. Hal ini terjadi ketika semua karakter dalam string adalah tanda kurung buka dan semuanya didorong ke stack.
 
 
-
-## Ikuti Kami di Media Sosial
-
-- [WebSite](https://www.smk.dev/)
-- [Instagram](https://www.instagram.com/smkdev.official/)
-- [LinkedIn](https://www.linkedin.com/in/username)
-- [YouTube](https://www.youtube.com/@smkdev)
-- [GitHub](https://github.com/smkdev-id)
-  
-![SMK.DEV SIAP KERJA!!! !](https://smkdev.storage.googleapis.com/wp/Professional-5-Steps-SMKDEV-Build-Digital-Talent-2.png)
+```javascript
+  console.log(balanceBracket("{ [ ( ] ) }")); // Output: NO
+  console.log(balanceBracket("{ ( ( [ ] ) [ ] ) [ ] }")); // Output: YES
+  console.log(balanceBracket("{[()]}")); // Output: YES
+  console.log(balanceBracket("{(([|])[])[]}")); // Output: NO
+```
