@@ -10,8 +10,34 @@
 */
 
 function balanceBracket(a) {
-    // code disini
-    return "YES";
+    // untuk push bracket pembuka
+    const stack = [];
+    const matchingBrackets = {
+        ')': '(',
+        ']': '[',
+        '}': '{'
+    };
+
+    // looping untuk pemeriksaan input
+    for (let char of a) {
+        // cek pembuka
+        if (char === '(' || char === '[' || char === '{') {
+            // push kedalam stack
+            stack.push(char);
+        // cek penutup
+        } else if (char === ')' || char === ']' || char === '}') {
+          // jika tidak ada pembuka return NO
+          // pop untuk menghilangkan stack terakhir sekaligus mengecek kembaliannya jika tidak match return NO juga
+            if (stack.length === 0 || stack.pop() !== matchingBrackets[char]) {
+                return 'NO';
+            } // Jika selain bracket atau spasi, return NO
+        } else if (char !== ' ') {
+          return 'NO';
+        }
+    };
+
+    // jika stacknya 0 return YES dan sebaliknya 
+    return stack.length === 0 ? 'YES' : 'NO';
 }
 
 module.exports = balanceBracket;
