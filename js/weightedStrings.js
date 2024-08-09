@@ -15,10 +15,40 @@
  * Buat fungsi untuk menyelesaikan permasalahan Weighted Strings!
  */
 
-
 function weightedString(a = 'abbcccd', b = [1, 3, 9, 8]) {
-    // code disini
-    return ["YES", "YES", "YES", "NO"];
+  
+    // menentukan bobot a-z
+    let weights = {};
+    for (let i = 0; i < 26; i++) {
+      weights[String.fromCharCode(97 + i)] = i + 1;
+    };
+    
+    // memproses awal input a
+    let rawA = [];
+    let tempObj = {};
+    
+    for (let i=0; i< a.length; i++) {
+      tempObj.char = a[i];
+      tempObj.count = tempObj.count ?? 1;
+      tempObj.weight = weights[a[i]];
+      if (a[i] === a[i+1]) {
+        tempObj.count++
+      } else {
+        rawA.push(tempObj);
+        tempObj = {}
+      }
+    };
+    
+    // proses akhir input a
+    let finalA = [];
+    rawA.forEach((each) => {
+      for(let i = 1; i <= each.count; i++){
+        finalA.push(each.weight * i)
+      }
+    });
+    
+    // return hasil
+    return b.map(each => finalA.some(eachA => eachA === each) ? 'YES' : 'NO');
 }
 
 module.exports = weightedString;
