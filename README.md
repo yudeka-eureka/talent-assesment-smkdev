@@ -54,3 +54,31 @@ Hasil dari tes koding akan diumumkan dalam waktu 1x24 jam setelah tes dilakukan.
 - [GitHub](https://github.com/smkdev-id)
   
 ![SMK.DEV SIAP KERJA!!! !](https://smkdev.storage.googleapis.com/wp/Professional-5-Steps-SMKDEV-Build-Digital-Talent-2.png)
+
+
+# 1. Weighted Strings
+
+- Deskripsi :
+Fungsi weighted strings yaitu untuk menghitung nilai bobot substring alphabet sesuai dengan posisi ordinal nya dan sesuai dengan yang dideklarasikan di file main_test.go. Jika nilai result nya sama dengan alpahbet tersebut ditandai dengan "YES" jika tidak di tandai dengan "NO".
+
+- Penyelesaian : 
+Membuat fungsi untuk membandingkan atau membaca result result yang telah dideklarasikan di file main_test.go sehingga jika di unit test terbaca semua dan tidak error seperti di func weightedStrings file main.go
+
+Dengan memmbuat map untuk menyimpan nilai bobot alphabet tersebut dihitung perkarakter/string, setelah mendapat result nya maka akan diperiksa apakah hasil tersebut sesuai dengan yang di inputkan di expected di main_test.go 
+
+# 2. Balanced Bracket 
+
+- Deskripsi :
+Fungsi balanced bracket ini membaca setiap stack atau { }, [ ], dan ( ) sehingga reusltnya seimbang antara kurung buka dan tutup.
+
+- Penyelesaian : 
+Membuat fungsi perbandingan yang membaca tanda kurung buka dan penutup bernilai/berjumlah atau tidak. Jika seimbang maka result "YES" jika tidak result "NO" dan membaca sesuai dengan yang dideklarasikan di main_test.go. Ditambah jug adengan fungsi untuk replace karkater lain selain { }, [ ], dan ( ) agar menghasilkan result sesuai expected.
+
+# 3. Highest Palindrome
+
+- Deskripsi : 
+Fungsi highest palindrome untuk menghasilkan nilai tertinggi dari string/s dengan maksimalisasi dari nilai k atau dikembalikan ke nilai -1
+
+- Penyelesaian : 
+Dengan membuat fungsi yang mengecek digit karakter digit atau non-digit. Setelah itu konversi string untuk mengintegrasi nilai ujung kanan kiri ke tengah maka perubahan itu menjadi palindrome. Fungsi ini membaca sesuai dengan yang dideklarasikan string dan k di file main_test.go
+ 

@@ -1,9 +1,6 @@
 package main
 
-import (
-	"fmt"
-	"unicode"
-)
+import "unicode"
 
 func balanceBracket(s string) string {
 	stack := []rune{}
@@ -13,21 +10,17 @@ func balanceBracket(s string) string {
 		']': '[',
 	}
 
-	for _, char := range s {
-		switch char {
+	for _, varchar := range s {
+		switch varchar {
 		case '(', '{', '[':
-			// Menambahkan tanda kurung buka ke stack
-			stack = append(stack, char)
+			stack = append(stack, varchar)
 		case ')', '}', ']':
-			// Memeriksa tanda kurung penutup
-			if len(stack) == 0 || stack[len(stack)-1] != bracetMap[char] {
+			if len(stack) == 0 || stack[len(stack)-1] != bracetMap[varchar] {
 				return "NO"
 			}
-			// Menghapus tanda kurung buka dari stack
 			stack = stack[:len(stack)-1]
 		default:
-			// Abaikan karakter selain tanda kurung dan karakter spasi, tab, atau newline
-			if char != ' ' && char != '\t' && char != '\n' {
+			if varchar != ' ' && varchar != '\t' && varchar != '\n' {
 				return "NO"
 			}
 		}
@@ -39,16 +32,10 @@ func balanceBracket(s string) string {
 	return "NO"
 }
 
-// func highestPalindrome(a string, k int) string {
-// 	fmt.Println(a, k)
-// 	return "3993"
-// }
-
-// Fungsi utama untuk mencari palindrom terbesar
 func highestPalindrome(s string, k int) string {
 	isValidNumber := func(s string) bool {
-		for _, char := range s {
-			if !unicode.IsDigit(char) {
+		for _, varchar := range s {
+			if !unicode.IsDigit(varchar) {
 				return false
 			}
 		}
@@ -60,15 +47,10 @@ func highestPalindrome(s string, k int) string {
 	}
 
 	n := len(s)
-	if k < 0 {
-		return "-1"
-	}
-
 	runes := []rune(s)
 	left, right := 0, n-1
-	changes := 0
+	changes := make([]bool, n)
 
-	// Pertama: Mengubah string menjadi palindrom dengan perubahan minimal
 	for left < right {
 		if runes[left] != runes[right] {
 			if runes[left] > runes[right] {
@@ -76,30 +58,31 @@ func highestPalindrome(s string, k int) string {
 			} else {
 				runes[left] = runes[right]
 			}
-			changes++
+			changes[left], changes[right] = true, true
+			k--
 		}
 		left++
 		right--
 	}
 
-	if changes > k {
+	if k < 0 {
 		return "-1"
 	}
 
-	// Kedua: Mengoptimalkan palindrom dengan sisa perubahan
 	left, right = 0, n-1
-	for left < right {
-		if runes[left] != '9' {
-			if runes[left] != runes[right] {
-				if k-changes >= 1 {
-					runes[left] = '9'
-					runes[right] = '9'
-					k -= 1
-				}
-			} else {
-				if k-changes >= 2 {
-					runes[left] = '9'
-					runes[right] = '9'
+	for left <= right && k > 0 {
+		if left == right { 
+			if runes[left] != '9' && k > 0 {
+				runes[left] = '9'
+				k--
+			}
+		} else {
+			if runes[left] != '9' {
+				if changes[left] || changes[right] {
+					runes[left], runes[right] = '9', '9'
+					k--
+				} else if k >= 2 {
+					runes[left], runes[right] = '9', '9'
 					k -= 2
 				}
 			}
@@ -108,28 +91,12 @@ func highestPalindrome(s string, k int) string {
 		right--
 	}
 
-	// Untuk string dengan panjang ganjil, ubah karakter tengah menjadi '9' jika masih ada perubahan
-	if n%2 == 1 && k > 0 {
-		runes[n/2] = '9'
-	}
-
 	return string(runes)
 }
 
-func main() {
-	// Contoh penggunaan fungsi
-	fmt.Println(highestPalindrome("3943", 1))    // Output: 3993
-	fmt.Println(highestPalindrome("092282", 3))  // Output: 992299
-	fmt.Println(highestPalindrome("5566", 1))    // Output: -1
-	fmt.Println(highestPalindrome("932239", 2))  // Output: 992299
-	fmt.Println(highestPalindrome("11331", 4))   // Output: 99399
-	fmt.Println(highestPalindrome("A1341", 1))   // Output: -1
-}
-
-
 func weightedStrings(s string, query []int) []string {
 	weightMap := make(map[int]struct{})
-	
+
 	for i := 0; i < len(s); i++ {
 		weight := 0
 		for j := i; j < len(s); j++ {
