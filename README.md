@@ -1,4 +1,5 @@
-# Komplektifitas
+# Kompleksitas balanceBracket
+
 ## Kompleksitas Waktu (Time Complexity):
 Kode tersebut memeriksa setiap karakter dalam string a satu per satu. Karena pemeriksaan ini dilakukan sekali untuk setiap karakter, waktu yang diperlukan adalah O(n), di mana n adalah jumlah karakter dalam string.
 
