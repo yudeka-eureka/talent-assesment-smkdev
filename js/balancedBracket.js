@@ -10,8 +10,22 @@
 */
 
 function balanceBracket(a) {
-    // code disini
-    return "YES";
+    const list = []
+    for (const item of a) {
+        if (item === " ") continue;
+        if ("{([".includes(item)) list.push(item);
+        else if ("})]".includes(item)) {
+            const check = list.pop()
+            if ((check === "{" && item === "}") ||
+                (check === "(" && item === ")") ||
+                (check === "[" && item === "]")) 
+                {
+                continue;
+                }
+             return "NO"
+        } else return "NO"
+    }
+    return list.length === 0 ? "YES" : "NO";
 }
 
 module.exports = balanceBracket;
