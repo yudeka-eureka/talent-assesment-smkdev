@@ -3,7 +3,6 @@ package main
 import "fmt"
 
 func balanceBracket(a string) string {
-	fmt.Println(a)
 	return "YES"
 }
 
