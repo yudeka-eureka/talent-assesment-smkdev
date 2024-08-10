@@ -15,10 +15,25 @@
  * Buat fungsi untuk menyelesaikan permasalahan Weighted Strings!
  */
 
+function weightedString(s, weights) {
+    const weightsSet = new Set();
+    for (let i = 0; i < s.length; i++) {
+        let j = i;
+        while(s[j] === s[i]) {
+            const weight = calculateWeight(s[j]) * (j - i + 1);
+            weightsSet.add(weight);
+            j++;
+        }
+        i = j - 1;
+    }
 
-function weightedString(a = 'abbcccd', b = [1, 3, 9, 8]) {
-    // code disini
-    return ["YES", "YES", "YES", "NO"];
+    console.log(weightsSet);
+
+    return weights.map(weight => weightsSet.has(weight) ? "YES" : "NO");
+}
+
+function calculateWeight(char) {
+    return char.toLowerCase().charCodeAt(0) - "a".charCodeAt(0) + 1;
 }
 
 module.exports = weightedString;
