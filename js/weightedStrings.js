@@ -18,7 +18,17 @@
 
 function weightedString(a = 'abbcccd', b = [1, 3, 9, 8]) {
     // code disini
-    return ["YES", "YES", "YES", "NO"];
+    let weights = new Set();
+
+    for (let i = 0; i < a.length; i++) {
+        let weight = 0;
+        for (let j = i; j < a.length && a[i] === a[j]; j++) {
+            weight += a[i].charCodeAt(0) - 96;
+            weights.add(weight);
+        }
+    }
+
+    return b.map((val) => (weights.has(val) ? "YES" : "NO"));
 }
 
 module.exports = weightedString;

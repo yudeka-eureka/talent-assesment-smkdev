@@ -20,8 +20,49 @@ Buat fungsi yang digunakan untuk menyelesaikan permasalahan Highest Palindrome! 
 function highestPalindrome(a = '3993',k = 1) {
 
     // code disini
-    
-    return '3993';
+    function makePalindrome(s, k) {
+        s = s.split('');
+        let changes = new Array(s.length).fill(false);
+
+        for (let i = 0; i < Math.floor(s.length / 2); i++) {
+            const left = s[i];
+            const right = s[s.length - 1 - i];
+
+            if (left !== right) {
+                const maxChar = left > right ? left : right;
+                s[i] = maxChar;
+                s[s.length - 1 - i] = maxChar;
+                changes[i] = true;
+                k--;
+            }
+        }
+
+        if (k < 0) return null;
+
+        for (let i = 0; i < Math.floor(s.length / 2); i++) {
+            if (s[i] !== '9') {
+                if (changes[i] && k >= 1) {
+                    s[i] = '9';
+                    s[s.length - 1 - i] = '9';
+                    k -= 1;
+                } else if (!changes[i] && k >= 2) {
+                    s[i] = '9';
+                    s[s.length - 1 - i] = '9';
+                    k -= 2;
+                }
+            }
+        }
+
+        return [s.join(''), k];
+    }
+
+    const result = makePalindrome(a, k);
+
+    if (result === null) {
+        return '-1';
+    }
+
+    return result[0];
 }
 
 module.exports = highestPalindrome;
