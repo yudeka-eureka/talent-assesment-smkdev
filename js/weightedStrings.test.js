@@ -1,5 +1,8 @@
 const weightedString = require('./weightedStrings')
 
+const NO = 'NO';
+const YES = 'YES';
+
 test('weightedString with input "abbcccd" and [1, 3, 9, 8] to equal ["YES", "YES", "YES", "NO"]', () => {
     expect(weightedString("abbcccd", [1, 3, 9, 8])).toEqual(["YES", "YES", "YES", "NO"]);
 });

@@ -10,8 +10,28 @@
 */
 
 function balanceBracket(a) {
-    // code disini
-    return "YES";
+    const stack = [];
+    const brackets = {
+        '(': ')',
+        '{': '}',
+        '[': ']'
+    };
+
+    for (let char of a) {
+        if (char === ' ') continue; 
+
+        if (brackets[char]) {
+            stack.push(char);
+        } else if (Object.values(brackets).includes(char)) {
+            if (stack.length === 0 || brackets[stack.pop()] !== char) {
+                return "NO";
+            }
+        } else {
+            return "NO";
+        }
+    }
+
+    return stack.length === 0 ? "YES" : "NO";
 }
 
 module.exports = balanceBracket;

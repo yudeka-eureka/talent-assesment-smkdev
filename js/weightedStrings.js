@@ -18,7 +18,25 @@
 
 function weightedString(a = 'abbcccd', b = [1, 3, 9, 8]) {
     // code disini
-    return ["YES", "YES", "YES", "NO"];
+    const alphabetWeight = (char) => char.charCodeAt(0) - 'a'.charCodeAt(0) + 1;
+    
+    const getWeights = (str) => {
+        const weights = new Set();
+        let start = 0;
+        while (start < str.length) {
+            let weight = 0;
+            for (let end = start; end < str.length; end++) {
+                if (end > start && str[end] !== str[start]) break;
+                weight += alphabetWeight(str[end]);
+                weights.add(weight);
+            }
+            start++;
+        }
+        return weights;
+    };
+
+    const weights = getWeights(a);
+    return b.map(weight => weights.has(weight) ? "YES" : "NO");
 }
 
 module.exports = weightedString;
