@@ -18,8 +18,38 @@
  */
 
  
-function weightedStrings($a = "abbcccd", $b = [1, 3, 9, 8]) {  
-    return ["YES", "YES", "YES", "NO"];
-}
+function weightedString($a = "abbcccd", $b = [1, 3, 9, 8]) {
+    // Initialize variables
+    $chars = str_split($a);
+    $charlen = count($chars);
+    $weights= [];
+    $result = [];
+    $count=1;
+    $currChar = $chars[0];
+    $weight = function($currChar) { return ord($currChar) - 96; };
 
+    // insert first character weight
+    array_push($weights,$weight($currChar));
+
+    for ($i=1; $i < $charlen; $i++) {
+        // check if character same as previous character
+        if ($chars[$i] === $currChar) {
+            $count++;
+        }else{
+            $count = 1;
+            $currChar = $chars[$i];
+        }
+
+        for ($j=1; $j <= $count; $j++) {
+            array_push($weights,$weight($currChar) * $j);
+        }
+
+    }
+    foreach ($b as $c => $v) {
+        $result[] = in_array($v, $weights) ? "YES" : "NO";
+    }
+
+    return $result;
+}
+// var_dump();
 ?>
