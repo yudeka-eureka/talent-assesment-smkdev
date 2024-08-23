@@ -9,10 +9,26 @@
  * 2. Jelaskan kompleksitas dari penyelesaianmu untuk No.3 dan cantumkan di README Repo! 
 */
 String balanceBracket(String a) {
-  //code disini
-  return "YES";
-}
+  List<String> stack = [];
+  Map<String, String> matchingBracket = {')': '(', '}': '{', ']': '['};
 
+  for (int i = 0; i < a.length; i++) {
+    String char = a[i];
+
+    if (char == '(' || char == '{' || char == '[') {
+      stack.add(char); // Push opening brackets onto the stack
+    } else if (char == ')' || char == '}' || char == ']') {
+      if (stack.isEmpty || stack.last != matchingBracket[char]) {
+        return "NO"; // Unmatched or misordered bracket
+      }
+      stack.removeLast(); // Pop the matched opening bracket
+    }
+  }
+
+  return stack.isEmpty
+      ? "YES"
+      : "NO"; // If stack is empty, brackets are balanced
+}
 
 /**
  * Kamu memiliki string yang merepresentasikan angka 3943 
@@ -33,11 +49,51 @@ String balanceBracket(String a) {
 Soal:
 Buat fungsi yang digunakan untuk menyelesaikan permasalahan Highest Palindrome! */
 String highestPalindrome(String a, int k) {
-  //code disini
-  return "3993";
+  int len = a.length;
+  List<String> chars = a.split('');
+  int left = 0, right = len - 1;
+  List<bool> changes = List.filled(len, false);
+
+  // Step 1: Make the string a palindrome with minimal changes
+  while (left < right) {
+    if (chars[left] != chars[right]) {
+      String maxChar = (chars[left].compareTo(chars[right]) > 0)
+          ? chars[left]
+          : chars[right];
+      chars[left] = chars[right] = maxChar;
+      changes[left] = changes[right] = true;
+      k--;
+    }
+    left++;
+    right--;
+  }
+
+  if (k < 0) return "-1";
+
+  // Step 2: Maximize the palindrome value with remaining changes
+  left = 0;
+  right = len - 1;
+  while (left < right) {
+    if (chars[left] != "9") {
+      if (changes[left] && k > 0) {
+        chars[left] = chars[right] = "9";
+        k--;
+      } else if (!changes[left] && k >= 2) {
+        chars[left] = chars[right] = "9";
+        k -= 2;
+      }
+    }
+    left++;
+    right--;
+  }
+
+  // Handle the middle character for odd length
+  if (len % 2 == 1 && k > 0) {
+    chars[(len / 2).floor()] = "9";
+  }
+
+  return chars.join('');
 }
-
-
 
 /**
  * Alfabet dari a sampai z memiliki bobot sebesar angka urutannya, 
@@ -56,6 +112,36 @@ String highestPalindrome(String a, int k) {
  * Buat fungsi untuk menyelesaikan permasalahan Weighted Strings!
  */
 List<String> weightedStrings(String a, List<int> b) {
-  //code disini
-  return ["YES", "YES", "YES", "NO"];
+  // set to store all possible wight
+  Set<int> weightSet = {};
+
+  int i = 0;
+  while (i < a.length) {
+    int charWeight = a.codeUnitAt(i) - 'a'.codeUnitAt(0) + 1;
+    int currentWeight = charWeight;
+    weightSet.add(currentWeight);
+
+    // Check for consecutive characters
+    int j = i + 1;
+    while (j < a.length && a[j] == a[i]) {
+      currentWeight += charWeight;
+      weightSet.add(currentWeight);
+      j++;
+    }
+
+    // Move to the next new character
+    i = j;
+  }
+
+  // Step 3: Evaluate each query
+  List<String> result = [];
+  for (int query in b) {
+    if (weightSet.contains(query)) {
+      result.add("YES");
+    } else {
+      result.add("NO");
+    }
+  }
+
+  return result;
 }

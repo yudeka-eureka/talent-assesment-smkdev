@@ -20,8 +20,52 @@ Soal:
 Buat fungsi yang digunakan untuk menyelesaikan permasalahan Highest Palindrome! */
 
 
-function highestPalindrome($a = '3993',$k = 1) {  
-    return "3993";
+function highestPalindrome($a = "3993", $k = 1)
+{
+    $len = strlen($a);
+    $chars = str_split($a);
+    $left = 0;
+    $right = $len - 1;
+    $changes = array_fill(0, $len, false);
+
+    // Step 1: Make the string a palindrome with minimal changes
+    while ($left < $right) {
+        if ($chars[$left] !== $chars[$right]) {
+            $maxChar = max($chars[$left], $chars[$right]);
+            $chars[$left] = $chars[$right] = $maxChar;
+            $changes[$left] = $changes[$right] = true;
+            $k--;
+        }
+        $left++;
+        $right--;
+    }
+
+    if ($k < 0) return "-1";
+
+    // Step 2: Maximize the palindrome value with remaining changes
+    $left = 0;
+    $right = $len - 1;
+    while ($left < $right) {
+        if ($chars[$left] !== "9") {
+            if ($changes[$left] && $k > 0) {
+                $chars[$left] = $chars[$right] = "9";
+                $k--;
+            } elseif (!$changes[$left] && $k >= 2) {
+                $chars[$left] = $chars[$right] = "9";
+                $k -= 2;
+            }
+        }
+        $left++;
+        $right--;
+    }
+
+    // Handle the middle character for odd length
+    if ($len % 2 === 1 && $k > 0) {
+        $chars[floor($len / 2)] = "9";
+    }
+
+    return implode("", $chars);
 }
+
 
 ?>

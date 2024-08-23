@@ -10,9 +10,32 @@
  * 2. Jelaskan kompleksitas dari penyelesaianmu untuk No.3 dan cantumkan di README Repo! 
 */
 
-function balanceBracket($a) {  
-    // code disini
-    return "YES";
+
+function balanceBracket($a)
+{
+    $stack = [];
+    $matchingBrackets = [
+        ")" => "(",
+        "}" => "{",
+        "]" => "[",
+    ];
+
+    for ($i = 0; $i < strlen($a); $i++) {
+        $char = $a[$i];
+
+        if ($char === "(" || $char === "{" || $char === "[") {
+            array_push($stack, $char);
+        } else if ($char === ")" || $char === "}" || $char === "]") {
+            if (count($stack) === 0 || array_pop($stack) !== $matchingBrackets[$char]) {
+                return "NO";
+            }
+        } else if (trim($char) !== "") {
+            // Check for any non-bracket and non-whitespace character
+            return "NO";
+        }
+    }
+
+    return count($stack) === 0 ? "YES" : "NO";
 }
 
 ?>

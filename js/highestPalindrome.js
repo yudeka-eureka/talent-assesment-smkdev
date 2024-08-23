@@ -1,8 +1,8 @@
 /**
- * Kamu memiliki string yang merepresentasikan angka 3943 
- * lalu diberikan sebuah variabel k untuk melakukan 
+ * Kamu memiliki string yang merepresentasikan angka 3943
+ * lalu diberikan sebuah variabel k untuk melakukan
  * replacement karakter sejumlah k pada string
- * untuk mendapatkan bentuk palindrom dengan nilai tertinggi. 
+ * untuk mendapatkan bentuk palindrom dengan nilai tertinggi.
  */
 
 /* Aturan:
@@ -17,11 +17,50 @@
 Soal:
 Buat fungsi yang digunakan untuk menyelesaikan permasalahan Highest Palindrome! */
 
-function highestPalindrome(a = '3993',k = 1) {
+function highestPalindrome(a = "3993", k = 1) {
+  const len = a.length;
+  let chars = a.split("");
+  let left = 0,
+    right = len - 1;
+  let changes = Array(len).fill(false);
 
-    // code disini
-    
-    return '3993';
+  // Step 1: Make the string a palindrome with minimal changes
+  while (left < right) {
+    if (chars[left] !== chars[right]) {
+      const maxChar = Math.max(chars[left], chars[right]);
+      chars[left] = chars[right] = maxChar;
+      changes[left] = changes[right] = true;
+      k--;
+    }
+    left++;
+    right--;
+  }
+
+  if (k < 0) return "-1";
+
+  // Step 2: Maximize the palindrome value with remaining changes
+  left = 0;
+  right = len - 1;
+  while (left < right) {
+    if (chars[left] !== "9") {
+      if (changes[left] && k > 0) {
+        chars[left] = chars[right] = "9";
+        k--;
+      } else if (!changes[left] && k >= 2) {
+        chars[left] = chars[right] = "9";
+        k -= 2;
+      }
+    }
+    left++;
+    right--;
+  }
+
+  // Handle the middle character for odd length
+  if (len % 2 === 1 && k > 0) {
+    chars[Math.floor(len / 2)] = "9";
+  }
+
+  return chars.join("");
 }
 
 module.exports = highestPalindrome;
