@@ -10,9 +10,33 @@
  * 2. Jelaskan kompleksitas dari penyelesaianmu untuk No.3 dan cantumkan di README Repo! 
 */
 
-function balanceBracket($a) {  
-    // code disini
-    return "YES";
+function balanceBracket($str) {
+    $brackets = array(
+        ')' => '(',
+        '}' => '{',
+        ']' => '['
+    );
+    $stack = [];
+    
+    for ($i = 0; $i < strlen($str); $i++) {
+        $char = $str[$i];
+        // Skip non-bracket characters (e.g., spaces)
+        if (!in_array($char, array_merge(array_keys($brackets), array_values($brackets)))) {
+            continue;
+        }
+        // If it's an opening bracket, push it onto the stack
+        if (in_array($char, $brackets)) {
+            array_push($stack, $char);
+        } else {
+            // If it's a closing bracket, check if it matches the top of the stack or the stack is empty
+            if (empty($stack) || array_pop($stack) !== $brackets[$char]) {
+                return "NO";
+            }
+        }
+    }
+
+    // If the stack is empty after iterating through the string, it means all brackets are balanced
+    return count($stack) == 0 ? "YES" : "NO";
 }
 
 ?>
