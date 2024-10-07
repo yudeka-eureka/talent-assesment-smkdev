@@ -10,8 +10,8 @@ func TestBalanceBracket(t *testing.T) {
 	}
 
 	result = balanceBracket("({ ( ( [ ] ) [ ] ) [ ] }")
-	if result != "YES" {
-		t.Errorf("balanceBracket('{ ( ( [ ] ) [ ] ) [ ] }') = %s; want YES", result)
+	if result != "NO" {
+		t.Errorf("balanceBracket('{ ( ( [ ] ) [ ] ) [ ] }') = %s; want NO", result)
 	}
 
 	result = balanceBracket("{[()]}")
