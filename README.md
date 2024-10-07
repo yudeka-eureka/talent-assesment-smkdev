@@ -54,3 +54,7 @@ Hasil dari tes koding akan diumumkan dalam waktu 1x24 jam setelah tes dilakukan.
 - [GitHub](https://github.com/smkdev-id)
   
 ![SMK.DEV SIAP KERJA!!! !](https://smkdev.storage.googleapis.com/wp/Professional-5-Steps-SMKDEV-Build-Digital-Talent-2.png)
+
+## Balanced Bracket Analysis
+Time complexity : O(n). Since the code have only one loop throughout the string parameter then the worst case is just n where n is the length of the input string.
+Space complexity : O(n). The function have a variable openBrackets which is a slice that will expand based on n, which is also the length of the input string.
