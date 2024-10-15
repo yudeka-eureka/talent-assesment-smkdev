@@ -43,6 +43,25 @@ Hasil dari tes koding akan diumumkan dalam waktu 1x24 jam setelah tes dilakukan.
 6. Pull request ke repository fork
 7. Jika ada pertanyaan silahkan buat issue di [github](https://github.com/yudeka-eureka/talent-assesment-smkdev)
 
+# penjelasan Complecity Code untuk case Balanced brackets
+1. Time Complexity
+pada funcsi balancedBracket melakukan proses baca string per satu karakter. tahapan pada proses ini sebagai berikut:
+
+    1. Iterasi string berdasarkan panjang karakter pada inputan, untuk biaya waktu-nya adalah **O(n)**
+    2. Operasi Stack, setiap kali menemukan bracket pembuka `(` `{` `[` akan ditambahkan pada stack (operasi pop), dan setiap kali menemui tanda bracket penutup `)` `}` `]` stack akan diperiksa apakah bernilai kosong atau tidak, apa bila eleman paling atas stack sesuai dengan bracket penutup maka akan melakukan operasi POP/menghapus elemen terakhir pada stack
+
+jadi, total kompelsitas waktu adalah **O(n)**
+
+a. **O(n)** untuk iterasi string karena semua karakter hanya diproses sekali, operasi push dan pop dilakukan sekali per element sehingga nilai biaya juga **O(n)** 
+
+2. Space Complexity
+komplesitas ruang, tergantung berapa banyak element yang akan disimpan pada stack, contoh dalam kasus terburuk jika nilai inputan merupakan semua bracket pembuka, maka semua elemen akan ditambahkan ke stack, sehingga element stack berisi `n` element. sehingga ruang yang digunakan oleh stack sebesar **O(n)**, sedangkan ruang untuk Map yang digunakan adalah sebuah map statis untuk menyinpan pasangan bracket yang bernilai selalu konstan (hanya 3 pasang karakter) sehingga memiliki kompleksitas ruang **O(1)**.
+
+### Kesimpulan
+1. Time Complexity **O(n)**
+2. Space Complecity **O(n)**
+
+
 
 
 ## Ikuti Kami di Media Sosial
