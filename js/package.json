@@ -1,8 +1,17 @@
 {
+  "name": "unit-test",
+  "version": "1.0.0",
+  "description": "unit test",
+  "main": "index.js",
   "scripts": {
     "test": "jest"
   },
+  "author": "Gunardi",
+  "license": "ISC",
   "devDependencies": {
     "jest": "^29.7.0"
+  },
+  "dependencies": {
+    "unit-test": "file:"
   }
 }
