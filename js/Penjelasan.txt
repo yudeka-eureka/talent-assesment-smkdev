@@ -1,0 +1,9 @@
+balanceBracket :
+
+Untuk menyelesaikan logika terkait balance bracket, maka cara nya menggunakan konsep Array Stack dengan prinsip LIFO (Last In First Out).
+Alur logika nya yaitu sebagai berikut :
+- Melakukan looping pada setiap karakter dalam string.
+- Jika karakter yang terbaca adalah bracket pembuka, maka tambahkan ke dalam array Stack.
+- Jika karakter yang terbaca adalah bracket penutup, maka diperiksa apakah bracket tersebut sesuai dengan pasangannya dalam array Stack pada index terakhir. Jika tidak sesuai, maka dianggap tidak valid dan return "NO".
+- Jika karaketer yang terbaca bukan selain bracket pembuka dan penutup yang ditetapkan, maka dianggap tidak valid dan return "NO".
+- Jika Looping sudah selesai, maka diperiksa apabila jumlah array dalam Stack kosong, maka dianggap valid karena bracket nya seimbang antara buka dan tutup. Jika tidak kosong, berarti ada bracket yang tidak seimbang.

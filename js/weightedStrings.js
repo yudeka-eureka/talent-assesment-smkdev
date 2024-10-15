@@ -15,10 +15,40 @@
  * Buat fungsi untuk menyelesaikan permasalahan Weighted Strings!
  */
 
+function weightedStrings(a = 'abbcccd', b = [1,3,9,8]) {
 
-function weightedString(a = 'abbcccd', b = [1, 3, 9, 8]) {
-    // code disini
-    return ["YES", "YES", "YES", "NO"];
+  let weights = new Set();
+
+  let i = 0;
+  while (i < a.length) {
+    const char = a[i];
+    const weight = char.charCodeAt(0) - 'a'.charCodeAt(0) + 1;
+
+    let count = 1;
+    while (((i + 1) < a.length) && a[i+1] == char) {
+      count++;
+      i++;
+    }
+
+    for (let j = 1; j <= count; j++){
+      weights.add(weight * j);
+    } 
+
+    i++;
+  }
+
+  let result = [];
+
+  for (let weight of b) {
+    if (weights.has(weight)){
+      result.push("YES");
+    } else {
+      result.push("NO");
+    }
+  }
+
+  return result;
+
 }
 
-module.exports = weightedString;
+module.exports = weightedStrings;
