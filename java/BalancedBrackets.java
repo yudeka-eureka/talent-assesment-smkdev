@@ -2,7 +2,7 @@ import java.util.*;
 
 public class BalancedBrackets {
 
-    // Function to check if the string of brackets is balanced
+    // Fungsi untuk memeriksa apakah rangkaian tanda kurung seimbang
     public static String isBalanced(String s) {
         Stack<Character> stack = new Stack<>();
         for (char ch : s.toCharArray()) {
@@ -21,14 +21,14 @@ public class BalancedBrackets {
         return stack.isEmpty() ? "YES" : "NO";
     }
 
-    // Helper function to check if the characters form a matching pair
+    // Fungsi pembantu untuk memeriksa apakah karakter membentuk pasangan yang cocok
     private static boolean isMatchingPair(char open, char close) {
         return (open == '(' && close == ')') ||
                 (open == '{' && close == '}') ||
                 (open == '[' && close == ']');
     }
 
-    // Main function to test the isBalanced function
+    // Fungsi utama untuk menguji func isBalanced
     public static void main(String[] args) {
         String[] testCases = {
                 "{ ( [ ] ) }",

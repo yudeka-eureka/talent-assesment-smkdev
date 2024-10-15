@@ -2,13 +2,13 @@ import java.util.*;
 
 public class HighestPalindrome {
 
-    // Recursive function to maximize palindrome
+    // Fungsi rekursif untuk memaksimalkan palindrom
     public static String highestPalindrome(String s, int k) {
         int n = s.length();
         char[] chars = s.toCharArray();
         boolean[] changed = new boolean[n];
 
-        // Step 1: Make the string a palindrome
+        // Langkah 1: Jadikan string sebagai palindrom
         int left = 0, right = n - 1;
         while (left < right) {
             if (chars[left] != chars[right]) {
@@ -20,14 +20,14 @@ public class HighestPalindrome {
             right--;
         }
 
-        // If we used more changes than allowed, return "-1"
+        // Jika kita menggunakan lebih banyak perubahan daripada yang diizinkan, kembalikan "-1"
         if (k < 0) return "-1";
 
-        // Step 2: Maximize the palindrome by using remaining changes
+        // Langkah 2: Maksimalkan palindrom dengan menggunakan perubahan yang tersisa
         left = 0;
         right = n - 1;
         while (left <= right) {
-            if (left == right) { // Handle the middle character in odd-length strings
+            if (left == right) { // Menangani karakter tengah dalam string dengan panjang ganjil
                 if (k > 0) {
                     chars[left] = '9';
                 }
@@ -52,24 +52,24 @@ public class HighestPalindrome {
     }
 
     public static void main(String[] args) {
-        // Example 1
+        // Contoh 1
         String s1 = "3943";
         int k1 = 1;
-        System.out.println(highestPalindrome(s1, k1)); // Output: 3993
+        System.out.println(highestPalindrome(s1, k1));
 
-        // Example 2
+        // Contoh 2
         String s2 = "932239";
         int k2 = 2;
-        System.out.println(highestPalindrome(s2, k2)); // Output: 992299
+        System.out.println(highestPalindrome(s2, k2));
 
-        // Example 3
+        // Contoh 3
         String s3 = "12321";
         int k3 = 1;
-        System.out.println(highestPalindrome(s3, k3)); // Output: 12921
+        System.out.println(highestPalindrome(s3, k3));
 
-        // Example 4
+        // Contoh 4
         String s4 = "12345";
         int k4 = 1;
-        System.out.println(highestPalindrome(s4, k4)); // Output: -1
+        System.out.println(highestPalindrome(s4, k4));
     }
 }
