@@ -9,9 +9,39 @@
  * 2. Jelaskan kompleksitas dari penyelesaianmu untuk No.3 dan cantumkan di README Repo! 
 */
 
-function balanceBracket(a) {
-    // code disini
-    return "YES";
+
+function balanceBracket(s) {
+    // Stack to store the opening brackets
+    let stack = [];
+
+    // Map to match closing brackets to opening brackets
+    const bracketPairs = {
+        ')': '(',
+        ']': '[',
+        '}': '{'
+    };
+
+    // Traverse each character in the string
+    for (let char of s) {
+        // Ignore whitespace
+        if (char === ' ') continue;
+
+        // If it's an opening bracket, push it onto the stack
+        if (char === '(' || char === '[' || char === '{') {
+            stack.push(char);
+        }
+        // If it's a closing bracket
+        else if (char === ')' || char === ']' || char === '}') {
+            // Check if stack is empty or top of the stack doesn't match the corresponding opening bracket
+            if (stack.length === 0 || stack.pop() !== bracketPairs[char]) {
+                return "NO";
+            }
+        }
+    }
+
+    // If stack is empty, all brackets were balanced
+    return stack.length === 0 ? "YES" : "NO";
 }
+
 
 module.exports = balanceBracket;

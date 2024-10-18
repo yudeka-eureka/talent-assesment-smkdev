@@ -10,7 +10,7 @@
  * 2. Jelaskan kompleksitas dari penyelesaianmu untuk No.3 dan cantumkan di README Repo! 
 */
 
-function isBalanced($input) {
+function balanceBracket($input) {
     // Stack to keep track of opening brackets
     $stack = [];
     
