@@ -18,8 +18,42 @@
  */
 
  
-function weightedStrings($a = "abbcccd", $b = [1, 3, 9, 8]) {  
-    return ["YES", "YES", "YES", "NO"];
+ function weightedStrings($string, $queries) {
+    $weights = [];
+    $length = strlen($string);
+    
+    $i = 0;
+    while ($i < $length) {
+        $char = $string[$i];
+        $charWeight = ord($char) - ord('a') + 1;
+        $repeatWeight = $charWeight;
+        $count = 1;
+
+        while ($i + 1 < $length && $string[$i] == $string[$i + 1]) {
+            $count++;
+            $repeatWeight += $charWeight;
+            $weights[$repeatWeight] = true;
+            $i++;
+        }
+        
+        $weights[$charWeight] = true;
+        
+        // Move to the next character
+        $i++;
+    }
+
+    // Check each query against the weights we have collected
+    $results = [];
+    foreach ($queries as $query) {
+        if (isset($weights[$query])) {
+            $results[] = "Yes";
+        } else {
+            $results[] = "No";
+        }
+    }
+
+    return $results;
 }
+
 
 ?>
