@@ -20,8 +20,62 @@ Soal:
 Buat fungsi yang digunakan untuk menyelesaikan permasalahan Highest Palindrome! */
 
 
-function highestPalindrome($a = '3993',$k = 1) {  
-    return "3993";
+function highestPalindrome($s, $k) {
+    // Helper function to convert string to array and vice versa
+    $n = strlen($s);
+    $arr = str_split($s);
+    
+    // Recursive function to attempt creating the highest palindrome
+    function makePalindrome(&$arr, $left, $right, &$k, $n) {
+        // Base case: when pointers cross, return true (it's a palindrome)
+        if ($left >= $right) {
+            return true;
+        }
+        
+        // Check if characters are equal
+        if ($arr[$left] !== $arr[$right]) {
+            // Reduce k for each difference and change the smaller digit to the larger one
+            if ($k <= 0) return false; // If no changes left, return false
+            $k--;
+            $arr[$left] = $arr[$right] = max($arr[$left], $arr[$right]);
+        }
+        
+        // Recur for the next pair
+        return makePalindrome($arr, $left + 1, $right - 1, $k, $n);
+    }
+
+    // Attempt to make the string a palindrome
+    if (!makePalindrome($arr, 0, $n - 1, $k, $n)) {
+        return '-1'; // If we can't make it a palindrome, return -1
+    }
+
+    // Second pass: make it the highest possible palindrome
+    function maximizePalindrome(&$arr, $left, $right, &$k, $n) {
+        if ($left >= $right || $k <= 0) return;
+        
+        // If both digits are not '9', try to maximize them to '9'
+        if ($arr[$left] !== '9') {
+            // Check if we can make the pair 9
+            if ($arr[$left] !== $arr[$right]) {
+                if ($k >= 1) {
+                    $arr[$left] = $arr[$right] = '9';
+                    $k--;
+                }
+            } elseif ($k >= 2) {
+                $arr[$left] = $arr[$right] = '9';
+                $k -= 2;
+            }
+        }
+
+        // Recur for the next pair
+        maximizePalindrome($arr, $left + 1, $right - 1, $k, $n);
+    }
+    
+    // Maximize the palindrome
+    maximizePalindrome($arr, 0, $n - 1, $k, $n);
+    
+    // Return the highest possible palindrome as a string
+    return implode('', $arr);
 }
 
 ?>
