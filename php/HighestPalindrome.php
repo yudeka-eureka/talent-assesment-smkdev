@@ -20,7 +20,7 @@ Soal:
 Buat fungsi yang digunakan untuk menyelesaikan permasalahan Highest Palindrome! */
 
 
-function highestPalindrome($s, $k) {
+function highestPalindrome($s = '3993', $k = 1) {
     // Helper function to convert string to array and vice versa
     $n = strlen($s);
     $arr = str_split($s);

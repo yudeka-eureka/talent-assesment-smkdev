@@ -18,7 +18,7 @@
  */
 
  
- function weightedStrings($string, $queries) {
+function weightedStrings($string = "abbcccd", $queries = [1, 3, 9, 8]) {
     $weights = []; // Array to store all possible weights
 
     // Get the length of the input string
