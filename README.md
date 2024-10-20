@@ -1,56 +1,37 @@
-# SMK.DEV Siap Kerja!!!
+# Answer Explaination
 
-SMK.DEV adalah lembaga pelatihan yang menciptakan talenta digital global. Belajar langsung dari para ahli industri dengan kurikulum komprehensif berbasis project-based learning, memastikan peserta mendapatkan pengalaman praktis dan pengetahuan mendalam untuk berhasil di dunia digital yang terus berkembang.
+## Number 2: Balance Bracket case
+Let's break down the time and space complexity of the solution provided in detail.
 
-# Proses Test Coding
+### Time Complexity Analysis:
+1. **Iterating through the input string**: The code iterates over each character in the input string exactly once. This loop has a time complexity of 𝑂(𝑛), where 𝑛 is the number of characters in the string.
 
-1.	**Tahapan Test** : 
-Sebelum dapat disalurkan sebagai talenta digital, Anda akan melalui beberapa tahap tes untuk memastikan kesiapan dan kecocokan Anda.
-2.	**Salah Satunya Adalah Tes Koding** : 
-Salah satu tahap penting adalah tes koding, yang dirancang untuk mengukur kemampuan teknis Anda secara menyeluruh.
-3.	**Tujuan Tes Koding** : 
-Tes koding ini bertujuan untuk memvalidasi keterampilan Anda sehingga sesuai dengan kebutuhan spesifik dari klien yang akan Anda hadapi.
-4.	**Pengumuman Hasil Tes Koding** :
-Hasil dari tes koding akan diumumkan dalam waktu 1x24 jam setelah tes dilakukan.
+2. **Operations inside the loop**:
+- For each character in the string, there is either a push operation (when an opening bracket is encountered) or a pop operation (when a matching closing bracket is encountered).
 
-## Process Test Coding
-```mermaid 
-    sequenceDiagram
-        actor T as Talent
-        participant G as Github
-        actor S as SMK.DEV
-        T->>G: fork repository https://github.com/yudeka-eureka/talent-assesment-smkdev
-        T->>G: pull repo di fork repo
-        T->>T: code
-        T->>G: push code di fork repo
-        T->>G: pull request ke reposotory https://github.com/yudeka-eureka/talent-assesment-smkdev
-        S->>G: cek pull request
-        S-->>T: send result test
-```
+- Both push and pop operations on a stack take 𝑂(1) time.
 
-# Cara Coding
+- Additionally, looking up values in the bracketPairs map and comparing the characters takes 𝑂(1) time.
 
-1. Pull repository yang dari fork repo
-2. Coding di fungsi yang sudah di sediakan contoh 
-   ``` 
-   function WeightedStrings(keyword,query) {
-        //code disini
-   } 
-   ```
-3. Buat commit sesuai dengan standar [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/)
-4. Runnig code dengan menggunakan **unit testing**
-5. Push code
-6. Pull request ke repository fork
-7. Jika ada pertanyaan silahkan buat issue di [github](https://github.com/yudeka-eureka/talent-assesment-smkdev)
+    Since both push and pop operations, as well as map lookups, are constant-time operations, the overall work inside the loop is constant per character.
 
+3. **Final check (stack empty check)**: After the loop finishes, the final check to determine if the stack is empty is also 𝑂(1).
 
+### Total Time Complexity:
+Since we are iterating through the string once and performing constant-time operations for each character, the total time complexity is 𝑂(𝑛), where 𝑛 is the length of the input string.
 
-## Ikuti Kami di Media Sosial
+### Space Complexity Analysis:
+1. **Stack usage**: The maximum number of elements that can be pushed onto the stack is proportional to the number of opening brackets in the string. In the worst case, if the string consists of only opening brackets (e.g., `"{{{{[[[["`), the stack will hold all of them. Therefore, the maximum space used by the stack is 𝑂(𝑛).
 
-- [WebSite](https://www.smk.dev/)
-- [Instagram](https://www.instagram.com/smkdev.official/)
-- [LinkedIn](https://www.linkedin.com/in/username)
-- [YouTube](https://www.youtube.com/@smkdev)
-- [GitHub](https://github.com/smkdev-id)
-  
-![SMK.DEV SIAP KERJA!!! !](https://smkdev.storage.googleapis.com/wp/Professional-5-Steps-SMKDEV-Build-Digital-Talent-2.png)
+2. **Bracket map**: The `bracketPairs` map is a constant-sized map with three entries, so its space complexity is 𝑂(1).
+
+3. **Input storage**: The input string is stored externally, and in Go, strings are immutable, so there's no additional space complexity related to modifying or copying the input.
+
+### Total Space Complexity:
+The dominant term for space complexity is the space required by the stack, which can grow linearly with the size of the input. Therefore, the overall space complexity is 𝑂(𝑛), where 𝑛 is the length of the input string.
+
+### Conclusion:
+- **Time Complexity**: 𝑂(𝑛), where 𝑛 is the length of the input string.
+- **Space Complexity**: 𝑂(𝑛), due to the stack used to track unmatched opening brackets.
+
+This algorithm is efficient both in terms of time and space for the problem of determining if a string of brackets is balanced.

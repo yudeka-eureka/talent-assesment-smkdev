@@ -2,9 +2,41 @@ package main
 
 import "fmt"
 
+// Function to check if the brackets are balanced
 func balanceBracket(a string) string {
-	fmt.Println(a)
-	return "YES"
+	// Parameter definition
+	// a = given string
+
+	// Stack to store opening brackets
+	stack := []rune{}
+
+	// Map to hold matching pairs of brackets
+	bracketPairs := map[rune]rune{
+		')': '(',
+		']': '[',
+		'}': '{',
+	}
+
+	// Iterate over the string
+	for _, char := range a {
+		// If it's an opening bracket, push it onto the stack
+		if char == '(' || char == '[' || char == '{' {
+			stack = append(stack, char)
+		} else if char == ')' || char == ']' || char == '}' {
+			// If it's a closing bracket, check if it matches the last opening bracket
+			if len(stack) == 0 || stack[len(stack)-1] != bracketPairs[char] {
+				return "NO"
+			}
+			// Pop the matched opening bracket from the stack
+			stack = stack[:len(stack)-1]
+		}
+	}
+
+	// If the stack is empty, the brackets are balanced
+	if len(stack) == 0 {
+		return "YES"
+	}
+	return "NO"
 }
 
 func highestPalindrome(a string, k int) string {
