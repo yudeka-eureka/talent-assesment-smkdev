@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 // Function to check if the brackets are balanced
 func balanceBracket(a string) string {
 	// Parameter definition
@@ -39,9 +37,73 @@ func balanceBracket(a string) string {
 	return "NO"
 }
 
+// Helper function to get the maximum of two byte values
+func max(a, b byte) byte {
+	if a > b {
+		return a
+	}
+	return b
+}
+
+// Function to determine highest palindrome
 func highestPalindrome(a string, k int) string {
-	fmt.Println(a, k)
-	return "3993"
+	// Parameter definition
+	// a = given string, representing a number
+	// k = digits
+
+	n := len(a)
+	chars := []byte(a)
+
+	// Helper recursive function to build palindrome
+	var buildPalindrome func(start, end, changesLeft int) bool
+	buildPalindrome = func(start, end, changesLeft int) bool {
+		if start >= end { // Base case: reached the middle
+			return changesLeft >= 0
+		}
+
+		// Recursively process the outer digits
+		if chars[start] == chars[end] {
+			return buildPalindrome(start+1, end-1, changesLeft)
+		}
+
+		// Case where digits at start and end are different
+		if changesLeft <= 0 {
+			return false
+		}
+
+		// Try to make both ends equal to the maximum of the two digits
+		maxDigit := max(chars[start], chars[end])
+		chars[start], chars[end] = maxDigit, maxDigit
+
+		// Recurse to the next pair after making one change
+		return buildPalindrome(start+1, end-1, changesLeft-1)
+	}
+
+	// Second helper to upgrade palindrome to maximum possible
+	var upgradeToMaxPalindrome func(start, end, changesLeft int) bool
+	upgradeToMaxPalindrome = func(start, end, changesLeft int) bool {
+		if start >= end || changesLeft <= 0 {
+			return true
+		}
+
+		if chars[start] == chars[end] && chars[start] != '9' && changesLeft >= 2 {
+			// Upgrade both ends to '9'
+			chars[start], chars[end] = '9', '9'
+			return upgradeToMaxPalindrome(start+1, end-1, changesLeft-2)
+		}
+
+		return upgradeToMaxPalindrome(start+1, end-1, changesLeft)
+	}
+
+	// First step: Make the string a palindrome with at most k changes
+	if !buildPalindrome(0, n-1, k) {
+		return "-1" // Impossible to make a palindrome
+	}
+
+	// Second step: Upgrade the palindrome to the highest possible value
+	upgradeToMaxPalindrome(0, n-1, k)
+
+	return string(chars)
 }
 
 // Function to calculate the weight of each character
