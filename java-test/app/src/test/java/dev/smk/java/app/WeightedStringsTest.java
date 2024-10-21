@@ -15,6 +15,12 @@ public class WeightedStringsTest {
 
     @Test
     void testWeightedStrings() {
+        /*
+        As per my understanding, assert of result1 should be: Yes, Yes, No, No, No, No, since the weights of the
+        characters in the string "abccba" are 1, 2, 3, 3, 2, 1. If the assert need to be true then the query is
+        1, 3, 6, 5, 9, 10. Since 'c' has a weight of 3 and previous character is 'c' then the weight of the string
+        is 3 + 3 = 6.
+        */
         List<String> result1 = WeightedStrings.weightedStrings("abccba", new int[]{1, 3, 12, 5, 9, 10});
         assertEquals(Arrays.asList("Yes", "Yes", "Yes", "No", "No", "No"), result1);
 
