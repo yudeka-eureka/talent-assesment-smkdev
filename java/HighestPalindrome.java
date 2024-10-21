@@ -8,7 +8,7 @@ class HighestPalindrome {
 
     public static void main(String[] args) {
         String s = "3943";
-        int k = 2;
+        int k = 1;
         highestPalindrome(s, k);
     }
 
