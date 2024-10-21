@@ -27,6 +27,8 @@ func balanceBracket(a string) string {
 			}
 			// Pop the matched opening bracket from the stack
 			stack = stack[:len(stack)-1]
+		} else {
+			return "NO"
 		}
 	}
 
